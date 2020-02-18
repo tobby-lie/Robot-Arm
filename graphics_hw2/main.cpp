@@ -1,8 +1,21 @@
+/*
+ Tobby Lie
+ Intro to Graphics HW 2
+ 2/18/20
+*/
+
 #define GL_SILENCE_DEPRECATION // silence deprecation warnings
 
 #include <GLUT/GLUT.h>
 #include <stdlib.h>
 #include <tuple>
+
+/* GlOBAL VARIABLES */
+
+static int shoulder = 0, elbow = 0, hand = 0;
+static int finger_1 = 0, finger_2 = 0, finger_3 = 0, thumb = 0;
+ 
+/* GLOBABL VARIBLES */
 
 /*
     Function: frame_buffer_coordinates
@@ -29,22 +42,47 @@ std::tuple<GLint, GLint> frame_buffer_coordinates()
     return std::make_tuple(fbWidth, fbHeight);
 } // end frame_buffer_coordinates
 
-static int shoulder = 0, elbow = 0, hand = 0;
-static int finger_1 = 0, finger_2 = 0, finger_3 = 0, thumb = 0;
-
+/*
+    Function: init
+ 
+    Description: Initializes all settings.
+ 
+    Parameters: None
+ 
+    Pre-Conditions: None
+ 
+    Post-Conditions: Window settings should be initialized.
+ 
+    Returns: Nothing
+*/
 void init(void)
 {
    glClearColor (0.0, 0.0, 0.0, 0.0);
    glShadeModel (GL_FLAT);
-}
+} // end init
 
+/*
+    Function: display
+ 
+    Description: Based on global values, display certain
+    information to the window.
+ 
+    Parameters: None
+ 
+    Pre-Conditions: Different value should carry information as
+        to how much objects need to be rotated.
+ 
+    Post-Conditions: Display on window is updated.
+ 
+    Returns: Nothing
+*/
 void display(void)
 {
-    glClear (GL_COLOR_BUFFER_BIT);
+    glClear (GL_COLOR_BUFFER_BIT); // clear window
 
-    glPushMatrix();
+    glPushMatrix(); //  push matrix to save state
     
-    // shoulder
+    /* SHOULDER */
     
     glColor3f(0.439216, 0.858824, 0.576471); // aquamarine
     
@@ -55,8 +93,8 @@ void display(void)
     glScalef (2.0, 0.4, 1.0);
     glutWireCube (1.0);
     glPopMatrix();
-
-    // ball joint
+    
+    /* BALL JOINT */
     
     glColor3f(0.6, 0.196078, 0.8); // dark orchid
     
@@ -65,7 +103,7 @@ void display(void)
     glutWireSphere(0.24, 100, 10);
     glPopMatrix();
     
-    // elbow
+    /* ELBOW */
     
     glColor3f(0.439216, 0.858824, 0.576471); // aquamarine
     
@@ -77,7 +115,7 @@ void display(void)
     glutWireCube (1.0);
     glPopMatrix();
     
-    // ball joint
+    /* BALL JOINT */
     
     glColor3f(0.6, 0.196078, 0.8); // dark orchid
     
@@ -86,7 +124,7 @@ void display(void)
     glutWireSphere(0.24, 100, 10);
     glPopMatrix();
     
-    // hand
+    /* HAND */
     
     glColor3f(0.439216, 0.858824, 0.576471); // aquamarine
     
@@ -98,7 +136,7 @@ void display(void)
     glutWireCube (1.0);
     glPopMatrix();
     
-    // FINGER 1
+    /* FINGER 1 */
     
     // ball joint
     
@@ -146,9 +184,9 @@ void display(void)
     
     glPopMatrix();
     
-    // END FINGER 1
+    /* END FINGER 1 */
     
-    // FINGER 2
+    /* FINGER 2 */
     
     // ball joint
     
@@ -196,9 +234,9 @@ void display(void)
     
     glPopMatrix();
     
-    // END FINGER 2
+    /* END FINGER 2 */
 
-    // FINGER 3
+    /* FINGER 3 */
 
     // ball joint
 
@@ -246,9 +284,9 @@ void display(void)
 
     glPopMatrix();
 
-    // END FINGER 3
+    /* END FINGER 3 */
 
-    // THUMB
+    /* THUMB */
     
     // ball joint
 
@@ -296,12 +334,25 @@ void display(void)
 
     glPopMatrix();
     
-    // END THUMB
+    /* END THUMB*/
 
-    glPopMatrix();
+    glPopMatrix(); // pop matrix state
     glutSwapBuffers();
-}
+} // end display
 
+/*
+    Function: reshape
+ 
+    Description: Handles logic for reshaping window and objects in scene
+ 
+    Parameters: int w, int h
+ 
+    Pre-Conditions: None
+ 
+    Post-Conditions: objects in window are rescaled
+ 
+    Returns: Nothing
+*/
 void reshape (int w, int h)
 {
     GLint fbWidth;
@@ -315,8 +366,21 @@ void reshape (int w, int h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslatef (0.0, 0.0, -5.0);
-}
+} // end reshape
 
+/*
+    Function: keyboard
+ 
+    Description: Handles logic for keyboard input
+ 
+    Parameters: unsigned char key, int x, int y
+ 
+    Pre-Conditions: None
+ 
+    Post-Conditions: state variables updated
+ 
+    Returns: Nothing
+*/
 void keyboard (unsigned char key, int x, int y)
 {
     switch (key) {
@@ -382,7 +446,7 @@ void keyboard (unsigned char key, int x, int y)
         default:
             break;
        }
-}
+} // end keyboard
 
 int main(int argc, char** argv)
 {
