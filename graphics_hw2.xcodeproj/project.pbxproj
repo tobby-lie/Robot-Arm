@@ -48,6 +48,7 @@
 		E38EB2B223FC47CF00891E15 = {
 			isa = PBXGroup;
 			children = (
+				E38D803F23FC9800003FBF37 /* ReadMe.txt */,
 				E38EB2BD23FC47D000891E15 /* graphics_hw2 */,
 				E38EB2BC23FC47D000891E15 /* Products */,
 				E38EB2C523FC47EA00891E15 /* Frameworks */,
@@ -66,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				E38EB2BE23FC47D000891E15 /* main.cpp */,
-				E38D803F23FC9800003FBF37 /* ReadMe.txt */,
 			);
 			path = graphics_hw2;
 			sourceTree = "<group>";
